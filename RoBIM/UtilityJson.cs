@@ -201,16 +201,32 @@ namespace RoBIM
             Transform transform = instance.GetTransform().Inverse;
 
             LocationPoint screwLocation = targetElement.Location as LocationPoint;
+            LocationCurve screwCurve = targetElement.Location as LocationCurve;
+
+            XYZ startPoint = screwCurve.Curve.GetEndPoint(0);
+            XYZ endPoint = screwCurve.Curve.GetEndPoint(1);
+            MessageBox.Show("startpoint :" + (startPoint.ToString()));
+            MessageBox.Show("endpoint :" + (endPoint.ToString()));
+
+            XYZ screwdirection = (screwCurve.Curve.GetEndPoint(0) - screwCurve.Curve.GetEndPoint(1)).Normalize();
+            MessageBox.Show("directin :" + (screwdirection.ToString()));
+
             string elementName = targetElement.Name.ToString();
             //MessageBox.Show("Name :" + elementName);
-            XYZ screwPlace = screwLocation.Point;
+            //XYZ screwPlace = screwLocation.Point;
             //MessageBox.Show("point :" + (screwPlace.ToString()));
+
+            double screwlength = 0.0;
+            screwlength = targetElement.LookupParameter("#6_Screw_Length").AsDouble();
+            MessageBox.Show("screwlength" + (screwlength.ToString()));
 
             ScrewComponent oneElement = new ScrewComponent();
             oneElement.ElementType = "Screw";
             oneElement.ElementName = elementName;
             oneElement.screwLocation = new ScrewLocation();
-            oneElement.screwLocation.ScrewPoint = screwPlace;
+            oneElement.screwLocation.ScrewPoint = startPoint;
+            oneElement.screwDirection = screwdirection.ToString();
+            oneElement.screwLength = screwlength;
 
             return oneElement;
         }
@@ -379,6 +395,8 @@ namespace RoBIM
             }
             return solids;
         }
-    }
 
+    }
 }
+
+

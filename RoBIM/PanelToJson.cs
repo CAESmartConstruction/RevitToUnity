@@ -39,7 +39,7 @@ namespace RoBIM
                 int categoryId = targetElement.Category.Id.IntegerValue;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
                 if (categoryId == (int)BuiltInCategory.OST_StructuralFraming)
                 {
-                    if(targetElement.Name == "#6_Screw")
+                    if(targetElement.Name == "#6_Screw_new")
                     {
                         OneElement oneElement = UtilityJson.getJsonFromScrew(targetElement);
                         elementsJson.ElementList.Add(oneElement);
@@ -169,6 +169,16 @@ namespace RoBIM
             set;
         }
         public ScrewLocation screwLocation
+        {
+            get;
+            set;
+        }
+        public string screwDirection
+        {
+            get;
+            set;
+        }
+        public double screwLength
         {
             get;
             set;
