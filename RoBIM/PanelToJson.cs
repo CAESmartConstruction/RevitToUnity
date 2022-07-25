@@ -46,7 +46,7 @@ namespace RoBIM
                     }
                     else
                     {
-                        OneElement oneElement = UtilityJson.getJsonFromStructuralFraming(targetElement);
+                        OneElement oneElement = UtilityJson.getJsonFromStructuralFraming(doc, targetElement);
                         elementsJson.ElementList.Add(oneElement);
                     }
 
@@ -58,10 +58,10 @@ namespace RoBIM
                 }
             }
 
-            //String directory = String.Format(@"C:\Users\nick0\RoBIM-1\Result_File\panel_{0}.txt", DateTime.Now.ToLongDateString());
             trans.Commit();
             String TimeStamp = DateTime.Now.ToLongDateString() + DateTime.Now.ToLongTimeString().Replace(":","_");
-            String directory = String.Format(@"C:\Users\Ian\source\repos\panel_{0}.txt", TimeStamp);
+            String directory = String.Format(@"C:\Users\nick0\RoBIM-1\Result_File\panel_{0}.txt", DateTime.Now.ToLongDateString());
+            //String directory = String.Format(@"C:\Users\Ian\source\repos\panel_{0}.txt", TimeStamp);
             MessageBox.Show(directory);
             string json = JsonConvert.SerializeObject(elementsJson, Formatting.Indented);
             File.WriteAllText(@directory, json);
