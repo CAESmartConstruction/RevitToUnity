@@ -201,16 +201,35 @@ namespace RoBIM
             Transform transform = instance.GetTransform().Inverse;
 
             LocationPoint screwLocation = targetElement.Location as LocationPoint;
+            LocationCurve screwCurve = targetElement.Location as LocationCurve;
+
+            XYZ startPoint = screwCurve.Curve.GetEndPoint(0);
+            XYZ endPoint = screwCurve.Curve.GetEndPoint(1);
+            //MessageBox.Show("startpoint :" + (startPoint.ToString()));
+            //MessageBox.Show("endpoint :" + (endPoint.ToString()));
+
+            XYZ screwdirection = (screwCurve.Curve.GetEndPoint(0) - screwCurve.Curve.GetEndPoint(1)).Normalize();
+            //MessageBox.Show("directin :" + (screwdirection.ToString()));
+
             string elementName = targetElement.Name.ToString();
             //MessageBox.Show("Name :" + elementName);
-            XYZ screwPlace = screwLocation.Point;
+
+            //only for model type can use lication.point
+            //XYZ screwPlace = screwLocation.Point;
             //MessageBox.Show("point :" + (screwPlace.ToString()));
+
+            double screwlength = 0.0;
+            screwlength = targetElement.LookupParameter("#6_Screw_Length").AsDouble();
+            double screwlength_in_mm = UnitUtils.Convert(screwlength, DisplayUnitType.DUT_DECIMAL_FEET,DisplayUnitType.DUT_MILLIMETERS);
+            //MessageBox.Show("screwlength(in mm)" + (screwlength_in_mm.ToString()));
 
             ScrewComponent oneElement = new ScrewComponent();
             oneElement.ElementType = "Screw";
             oneElement.ElementName = elementName;
             oneElement.screwLocation = new ScrewLocation();
-            oneElement.screwLocation.ScrewPoint = screwPlace;
+            oneElement.screwLocation.ScrewPoint = startPoint;
+            oneElement.screwDirection = screwdirection.ToString();
+            oneElement.screwLength_in_mm = screwlength_in_mm;
 
             return oneElement;
         }
@@ -379,6 +398,8 @@ namespace RoBIM
             }
             return solids;
         }
-    }
 
+    }
 }
+
+
