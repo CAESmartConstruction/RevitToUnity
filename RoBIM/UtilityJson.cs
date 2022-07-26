@@ -205,20 +205,23 @@ namespace RoBIM
 
             XYZ startPoint = screwCurve.Curve.GetEndPoint(0);
             XYZ endPoint = screwCurve.Curve.GetEndPoint(1);
-            MessageBox.Show("startpoint :" + (startPoint.ToString()));
-            MessageBox.Show("endpoint :" + (endPoint.ToString()));
+            //MessageBox.Show("startpoint :" + (startPoint.ToString()));
+            //MessageBox.Show("endpoint :" + (endPoint.ToString()));
 
             XYZ screwdirection = (screwCurve.Curve.GetEndPoint(0) - screwCurve.Curve.GetEndPoint(1)).Normalize();
-            MessageBox.Show("directin :" + (screwdirection.ToString()));
+            //MessageBox.Show("directin :" + (screwdirection.ToString()));
 
             string elementName = targetElement.Name.ToString();
             //MessageBox.Show("Name :" + elementName);
+
+            //only for model type can use lication.point
             //XYZ screwPlace = screwLocation.Point;
             //MessageBox.Show("point :" + (screwPlace.ToString()));
 
             double screwlength = 0.0;
             screwlength = targetElement.LookupParameter("#6_Screw_Length").AsDouble();
-            MessageBox.Show("screwlength" + (screwlength.ToString()));
+            double screwlength_in_mm = UnitUtils.Convert(screwlength, DisplayUnitType.DUT_DECIMAL_FEET,DisplayUnitType.DUT_MILLIMETERS);
+            //MessageBox.Show("screwlength(in mm)" + (screwlength_in_mm.ToString()));
 
             ScrewComponent oneElement = new ScrewComponent();
             oneElement.ElementType = "Screw";
@@ -226,7 +229,7 @@ namespace RoBIM
             oneElement.screwLocation = new ScrewLocation();
             oneElement.screwLocation.ScrewPoint = startPoint;
             oneElement.screwDirection = screwdirection.ToString();
-            oneElement.screwLength = screwlength;
+            oneElement.screwLength_in_mm = screwlength_in_mm;
 
             return oneElement;
         }
