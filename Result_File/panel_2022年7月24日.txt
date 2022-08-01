@@ -1,0 +1,532 @@
+{
+  "ElementList": [
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 3.7584635416658294,
+          "Y": 0.044963411710122525,
+          "X": 4.0677083333332718
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 3.7584635416656496,
+          "Y": 0.044963411710122525,
+          "X": 8.0677083333332433
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 3.7584635416654697,
+          "Y": 0.044963411710122525,
+          "X": 12.067708333333213
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 3.75846354166529,
+          "Y": 0.044963411710122525,
+          "X": 16.067708333333183
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.930664062499446,
+          "Y": 0.29785156249908173,
+          "X": 4.0677083333331936
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.930664062499471,
+          "Y": 0.29785156249908173,
+          "X": 8.0677083333331936
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.930664062499496,
+          "Y": 0.29785156249908173,
+          "X": 12.067708333333194
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.93066406249952,
+          "Y": 0.29785156249908173,
+          "X": 16.067708333333197
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.645833333332966,
+          "Y": 0.044963411710122081,
+          "X": 4.067708333333325
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.64583333333303,
+          "Y": 0.044963411710122081,
+          "X": 8.0677083333333144
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.645833333333094,
+          "Y": 0.044963411710122081,
+          "X": 12.067708333333311
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.645833333333158,
+          "Y": 0.044963411710122081,
+          "X": 16.067708333333314
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.35416666666639557,
+          "Y": 0.04325026700805145,
+          "X": 4.0677083333332824
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.35416666666638263,
+          "Y": 0.04325026700805145,
+          "X": 8.0677083333332487
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.35416666666639557,
+          "Y": 0.04325026700805145,
+          "X": 12.067708333333215
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.35416666666639557,
+          "Y": 0.04325026700805145,
+          "X": 16.067708333333179
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 2.1666666666663041,
+          "Y": 0.29785156249905742,
+          "X": 4.067708333333286
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 2.1666666666662913,
+          "Y": 0.29785156249905742,
+          "X": 8.0677083333332451
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 2.1666666666662784,
+          "Y": 0.29785156249905742,
+          "X": 12.067708333333204
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 2.1666666666662655,
+          "Y": 0.29785156249905742,
+          "X": 16.067708333333165
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 2.1666666666662988,
+          "Y": 0.29785156249905764,
+          "X": 24.937500000000021
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 2.1666666666663557,
+          "Y": 0.29785156249905759,
+          "X": 0.062500000000033543
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.062499999999993852,
+          "Y": 0.29785156249905775,
+          "X": 4.0677083333332789
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.062500000000006772,
+          "Y": 0.29785156249905775,
+          "X": 8.0677083333332469
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.062499999999993852,
+          "Y": 0.29785156249905775,
+          "X": 12.067708333333215
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.062499999999993852,
+          "Y": 0.29785156249905775,
+          "X": 16.067708333333183
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.06250000000005225,
+          "Y": 0.29785156249905753,
+          "X": 24.937500000000021
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.062499999999980946,
+          "Y": 0.29785156249905753,
+          "X": 0.062500000000023537
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.930664062499545,
+          "Y": 0.29785156249905753,
+          "X": 24.9375
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.930664062499424,
+          "Y": 0.29785156249905753,
+          "X": 0.062499999999984
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 3.7584635416658294,
+          "Y": 0.044963411710122525,
+          "X": 20.067708333333155
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 3.7584635416658294,
+          "Y": 0.044963411710122525,
+          "X": 24.067708333333126
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.930664062499446,
+          "Y": 0.29785156249908173,
+          "X": 20.067708333333197
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.930664062499446,
+          "Y": 0.29785156249908173,
+          "X": 24.067708333333197
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.645833333332966,
+          "Y": 0.044963411710122081,
+          "X": 20.067708333333279
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.645833333332966,
+          "Y": 0.044963411710122081,
+          "X": 24.067708333333268
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.35416666666639557,
+          "Y": 0.04325026700805145,
+          "X": 20.067708333333147
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.35416666666639557,
+          "Y": 0.04325026700805145,
+          "X": 24.067708333333112
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 2.1666666666663041,
+          "Y": 0.29785156249905742,
+          "X": 20.067708333333123
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 2.1666666666663041,
+          "Y": 0.29785156249905742,
+          "X": 24.06770833333308
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.062499999999993852,
+          "Y": 0.29785156249905775,
+          "X": 20.067708333333151
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.062499999999993852,
+          "Y": 0.29785156249905775,
+          "X": 24.067708333333119
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.18749999999999853,
+          "Y": -0.21451822916607666,
+          "X": 24.937500000000021
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.18750000000007916,
+          "Y": -0.21451822916607666,
+          "X": 0.062500000000028422
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 3.5748697916664551,
+          "Y": -0.21451822916607666,
+          "X": 0.062500000000037748
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 3.5748697916663752,
+          "Y": -0.21451822916607666,
+          "X": 24.937500000000036
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.812499999999673,
+          "Y": -0.21451822916607666,
+          "X": 24.937500000000071
+        }
+      }
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 14.812499999999753,
+          "Y": -0.21451822916607577,
+          "X": 0.062500000000002762
+        }
+      }
+    }
+  ]
+}

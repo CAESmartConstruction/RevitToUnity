@@ -58,7 +58,6 @@ namespace RoBIM
                 }
             }
 
-            //String directory = String.Format(@"C:\Users\nick0\RoBIM-1\Result_File\panel_{0}.txt", DateTime.Now.ToLongDateString());
             trans.Commit();
             string directory = Directory.GetCurrentDirectory();
             if (directory != null)
@@ -67,11 +66,11 @@ namespace RoBIM
                 directory = Directory.GetParent(directory).ToString();
                 directory = Directory.GetParent(directory).ToString();
             }
-
+            // String directory = String.Format(@"C:\Users\nick0\RoBIM-1\Result_File\panel_{0}.txt", DateTime.Now.ToLongDateString());
             String TimeStamp = DateTime.Now.ToLongDateString() + DateTime.Now.ToLongTimeString().Replace(":", "_");
             String filename = String.Format(@"panel_{0}.txt", TimeStamp);
             //directory 相對路徑
-            directory = @directory + @"\1\"+ filename;
+            directory = @directory + @"\Result_File\"+ filename;
            
            
             
@@ -182,6 +181,16 @@ namespace RoBIM
             set;
         }
         public ScrewLocation screwLocation
+        {
+            get;
+            set;
+        }
+        public string screwDirection
+        {
+            get;
+            set;
+        }
+        public double screwLength_in_mm
         {
             get;
             set;
