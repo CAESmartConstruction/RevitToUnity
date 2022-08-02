@@ -77,16 +77,10 @@ namespace RoBIM
                     elementSymbol = symbol;
                 }
             }
-            Element element = doc.FamilyCreate.NewFamilyInstance(XYZ.Zero, elementSymbol,StructuralType.Beam);
-            Line line = Line.CreateBound(XYZ.Zero, XYZ.Zero.Add(XYZ.BasisZ.Multiply(10)));
-            LocationCurve elemCurve = element.Location as LocationCurve;
-            elemCurve.Curve = line;
-            geomOptions.View = doc.ActiveView;
-            geomOptions.ComputeReferences = false;
+      
             FamilyInstance familyInstance = targetElement as FamilyInstance;
             
             
-            Instance instance = targetElement as Instance;
             List<Solid> solids = UtilityJson.GetElementSolids(targetElement, geomOptions, false);
            
             
@@ -171,7 +165,7 @@ namespace RoBIM
             //doc.Delete(element.Id);
             
 
-            SteelComponet oneElement = new SteelComponet();
+            SteelComponent oneElement = new SteelComponent();
             oneElement.ElementType = "Structural Framing";
             oneElement.ElementName = elementName;
             oneElement.SectionOnStart = section;
