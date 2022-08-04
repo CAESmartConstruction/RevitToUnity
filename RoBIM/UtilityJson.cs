@@ -323,6 +323,7 @@ namespace RoBIM
         {
             endcap,
             PartB,
+            PartD_C_Channel,
             
         }
         static public ProductionMethod getProductionMethod_FromSteelComponentFamilyName(string SteelComponentFamilyName)
@@ -333,7 +334,9 @@ namespace RoBIM
                 return ProductionMethod.VacuumGripper;
             else if (SteelComponentFamilyName == EnumSteelComponentFamilyName.PartB.ToString())
                 return ProductionMethod.None;
-            else if (SteelComponentFamilyName == "ParD(C-Channel)")
+            else if (SteelComponentFamilyName == EnumSteelComponentFamilyName.PartD_C_Channel.ToString())
+                return ProductionMethod.Gripper;
+            else if (SteelComponentFamilyName == "typical steel stud")
                 return ProductionMethod.Gripper;
             else
                 return ProductionMethod.None;
