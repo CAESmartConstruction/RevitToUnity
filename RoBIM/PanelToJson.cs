@@ -46,7 +46,7 @@ namespace RoBIM
                     }
                     else
                     {
-                        OneElement oneElement = UtilityJson.getJsonFromStructuralFraming(targetElement);
+                        OneElement oneElement = UtilityJson.getJsonFromStructuralFraming(doc,targetElement);
                         elementsJson.ElementList.Add(oneElement);
                     }
 
