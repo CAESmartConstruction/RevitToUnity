@@ -11,8 +11,8 @@ using Autodesk.Revit.ApplicationServices;
 using System.Collections.Generic;
 
 
-using Revit.IFC.Export.Exporter;
-using Revit.IFC.Export.Utility;
+//using Revit.IFC.Export.Exporter;
+//using Revit.IFC.Export.Utility;
 
 
 namespace RoBIM
@@ -30,7 +30,7 @@ namespace RoBIM
             Application app = doc.Application;
             UIApplication uiapp = new UIApplication(app);
 
-            ExporterIFC exporterIFC;
+            //ExporterIFC exporterIFC;
             
             //ExporterIFC.ExportIFC(doc, exporterIFC, doc.ActiveView);
             //IFCExportInfoPair exportType=new IFCExportInfoPair();
@@ -44,7 +44,7 @@ namespace RoBIM
 
             
             //Define Document
-            BeamExporter beamExporter=new BeamExporter();
+            //BeamExporter beamExporter=new BeamExporter();
 
             //beamExporter.ExportBeamAsStandardElement(exporterIFC, element, exportType, 
             //geometryElement, productWrapper, out bool dontExport);
