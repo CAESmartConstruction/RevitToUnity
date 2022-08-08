@@ -1,0 +1,126 @@
+{
+  "StructuralFramingList": [],
+  "InsulationList": [
+    {
+      "ElementType": "Generic Model",
+      "ElementName": "RockWoodInsulationTwoArray_2",
+      "insulationLocation": {
+        "LocationPoint": {
+          "Z": 3.0315755208332407,
+          "Y": -0.031249999999964473,
+          "X": 1.0664062500002354
+        }
+      },
+      "insulationSize": {
+        "Height": 1.7975260416666667,
+        "Width": 2.1328125,
+        "Thick": 0.25
+      },
+      "Material": null,
+      "productionReference": {
+        "Position": {
+          "Z": 0.89876302083332715,
+          "Y": 0.12499999999997236,
+          "X": -1.0664062499999796
+        },
+        "Direction": {
+          "Z": 0.0,
+          "Y": 1.0,
+          "X": 0.0
+        },
+        "ProductionMethod": "VacuumGripper"
+      }
+    },
+    {
+      "ElementType": "Generic Model",
+      "ElementName": "RockWoodInsulationTwoArray_2",
+      "insulationLocation": {
+        "LocationPoint": {
+          "Z": 3.0315755208332407,
+          "Y": -0.031249999999964473,
+          "X": 3.1992187500002354
+        }
+      },
+      "insulationSize": {
+        "Height": 1.7975260416666667,
+        "Width": 2.1328125,
+        "Thick": 0.25
+      },
+      "Material": null,
+      "productionReference": {
+        "Position": {
+          "Z": 0.89876302083332715,
+          "Y": 0.12499999999997236,
+          "X": 1.0664062500000204
+        },
+        "Direction": {
+          "Z": 0.0,
+          "Y": 1.0,
+          "X": 0.0
+        },
+        "ProductionMethod": "VacuumGripper"
+      }
+    },
+    {
+      "ElementType": "Generic Model",
+      "ElementName": "RockWoodInsulationTwoArray_2",
+      "insulationLocation": {
+        "LocationPoint": {
+          "Z": 3.0315755208332407,
+          "Y": -0.031249999999964473,
+          "X": 2.0068359375002354
+        }
+      },
+      "insulationSize": {
+        "Height": 0.083333333333333481,
+        "Width": 2.1328125,
+        "Thick": 0.25
+      },
+      "Material": null,
+      "productionReference": {
+        "Position": {
+          "Z": 0.89876302083332715,
+          "Y": 0.12499999999997236,
+          "X": -0.12597656249997946
+        },
+        "Direction": {
+          "Z": 0.0,
+          "Y": 1.0,
+          "X": 0.0
+        },
+        "ProductionMethod": "VacuumGripper"
+      }
+    },
+    {
+      "ElementType": "Generic Model",
+      "ElementName": "RockWoodInsulationTwoArray_2",
+      "insulationLocation": {
+        "LocationPoint": {
+          "Z": 3.0315755208332407,
+          "Y": -0.031249999999964473,
+          "X": 4.1396484375002354
+        }
+      },
+      "insulationSize": {
+        "Height": 0.083333333333333481,
+        "Width": 2.1328125,
+        "Thick": 0.25
+      },
+      "Material": null,
+      "productionReference": {
+        "Position": {
+          "Z": 0.89876302083332715,
+          "Y": 0.12499999999997236,
+          "X": 2.0068359375000204
+        },
+        "Direction": {
+          "Z": 0.0,
+          "Y": 1.0,
+          "X": 0.0
+        },
+        "ProductionMethod": "VacuumGripper"
+      }
+    }
+  ],
+  "ScrewList": []
+}

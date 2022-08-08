@@ -43,14 +43,15 @@ namespace RoBIM
 
             Transform transform_Inverse = transform.Inverse;
             XYZ local_Point = transform_Inverse.OfPoint(locationPoint.Point);
-            XYZ local_LeftLowPointOnFace = locationPoint.Point.Subtract(XYZ.BasisX.Multiply(Width / 2)).Add(XYZ.BasisY.Multiply(thick / 2));
+            XYZ local_LeftLowPointOnFace = local_Point.Subtract(XYZ.BasisX.Multiply(Width / 2)).Add(XYZ.BasisY.Multiply(thick / 2));
             XYZ local_LocationPoint = local_LeftLowPointOnFace.Add(XYZ.BasisX.Multiply(InsulationWidth / 2)).Add(XYZ.BasisZ.Multiply(InsulationHeight / 2));
             for (int h= 0; h< Hnumber; h++){
                 for (int v = 0;v < Vnumber; v++)
                 {
-                    XYZ xTransition = XYZ.BasisX.Multiply(InsulationWidth ).Multiply(h);
-                    XYZ zTransition = XYZ.BasisZ.Multiply(InsulationHeight ).Multiply(v);
+                    XYZ xTransition = XYZ.BasisX.Multiply(InsulationWidth).Multiply(h);
+                    XYZ zTransition = XYZ.BasisZ.Multiply(InsulationHeight).Multiply(v);
                     XYZ elementlocal_LocationPoint= local_LocationPoint.Add(xTransition).Add(zTransition);
+                    if (elementlocal_LocationPoint == null) elementlocal_LocationPoint = local_LocationPoint;
                     string elementName = targetElement.Name.ToString();
                     Elements elementsJson = new Elements();
                     
@@ -67,7 +68,7 @@ namespace RoBIM
                     oneElement.insulationSize.Width = family.LookupParameter("InsulationWidth").AsDouble();
                     oneElement.insulationSize.Thick = family.LookupParameter("thick").AsDouble();
 
-
+                    oneElement.productionReference=new ProductionReference();
                     oneElement.productionReference.Position = elementlocal_LocationPoint;
                     oneElement.productionReference.Direction = XYZ.BasisY;
                     oneElement.productionReference.ProductionMethod = ProductionMethod.VacuumGripper.ToString();
@@ -97,7 +98,7 @@ namespace RoBIM
                     oneElement.insulationSize.Height = VRemainHight;
                     oneElement.insulationSize.Width = family.LookupParameter("InsulationWidth").AsDouble();
                     oneElement.insulationSize.Thick = family.LookupParameter("thick").AsDouble();
-
+                    oneElement.productionReference = new ProductionReference();
                     oneElement.productionReference.Position = elementlocal_LocationPoint;
                     oneElement.productionReference.Direction = XYZ.BasisY;
                     oneElement.productionReference.ProductionMethod = ProductionMethod.VacuumGripper.ToString();
@@ -127,7 +128,7 @@ namespace RoBIM
                     oneElement.insulationSize.Height = family.LookupParameter("InsulationHeight").AsDouble();
                     oneElement.insulationSize.Width = HRemainWidth;
                     oneElement.insulationSize.Thick = family.LookupParameter("thick").AsDouble();
-
+                    oneElement.productionReference = new ProductionReference();
                     oneElement.productionReference.Position = elementlocal_LocationPoint;
                     oneElement.productionReference.Direction = XYZ.BasisY;
                     oneElement.productionReference.ProductionMethod = ProductionMethod.VacuumGripper.ToString();
@@ -154,7 +155,7 @@ namespace RoBIM
                 oneElement.insulationSize.Height = VRemainHight;
                 oneElement.insulationSize.Width = family.LookupParameter("InsulationWidth").AsDouble();
                 oneElement.insulationSize.Thick = family.LookupParameter("thick").AsDouble();
-
+                oneElement.productionReference = new ProductionReference();
                 oneElement.productionReference.Position = elementlocal_LocationPoint;
                 oneElement.productionReference.Direction = XYZ.BasisY;
                 oneElement.productionReference.ProductionMethod = ProductionMethod.VacuumGripper.ToString();
