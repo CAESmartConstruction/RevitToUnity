@@ -37,7 +37,8 @@ namespace RoBIM
             double thick = family.LookupParameter("thick").AsDouble();
             double VRemainHight=family.LookupParameter("VRemainLength").AsDouble();
             double HRemainWidth = family.LookupParameter("HRemainWidth").AsDouble();
-            
+            string material = family.get_Parameter(BuiltInParameter.MATERIAL_NAME).AsString();
+
             FamilyInstance familyInstance = targetElement as FamilyInstance;
             Transform transform = familyInstance.GetTransform();
 
@@ -59,7 +60,7 @@ namespace RoBIM
                     oneElement.ElementType = "Generic Model";
 
                     oneElement.ElementName = elementName;
-
+                    oneElement.Material = material;
                     oneElement.insulationLocation = new InsulationLocation();
                     oneElement.insulationLocation.LocationPoint = transform.OfPoint(elementlocal_LocationPoint);
 
@@ -90,10 +91,10 @@ namespace RoBIM
                     oneElement.ElementType = "Generic Model";
 
                     oneElement.ElementName = elementName;
-
+                    oneElement.Material = material;
                     oneElement.insulationLocation = new InsulationLocation();
                     oneElement.insulationLocation.LocationPoint = transform.OfPoint(elementlocal_LocationPoint);
-
+                    
                     oneElement.insulationSize = new InsulationSize();
                     oneElement.insulationSize.Height = VRemainHight;
                     oneElement.insulationSize.Width = family.LookupParameter("InsulationWidth").AsDouble();
@@ -120,7 +121,7 @@ namespace RoBIM
                     oneElement.ElementType = "Generic Model";
 
                     oneElement.ElementName = elementName;
-
+                    oneElement.Material = material;
                     oneElement.insulationLocation = new InsulationLocation();
                     oneElement.insulationLocation.LocationPoint = transform.OfPoint(elementlocal_LocationPoint);
 
@@ -147,7 +148,7 @@ namespace RoBIM
                 oneElement.ElementType = "Generic Model";
 
                 oneElement.ElementName = elementName;
-
+                oneElement.Material = material;
                 oneElement.insulationLocation = new InsulationLocation();
                 oneElement.insulationLocation.LocationPoint = transform.OfPoint(elementlocal_LocationPoint);
 
