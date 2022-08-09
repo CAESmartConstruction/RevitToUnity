@@ -46,7 +46,7 @@ namespace RoBIM
                         if (targetElement.get_Parameter(BuiltInParameter.IS_VISIBLE_PARAM).AsInteger() == 1)
                         {
                             OneElement oneElement = UtilityJson.getJsonFromScrew(targetElement);
-                            elementsJson.ElementList.Add(oneElement);
+                            elementsJson.ScrewList.Add(oneElement);
                         }
                         
                     }

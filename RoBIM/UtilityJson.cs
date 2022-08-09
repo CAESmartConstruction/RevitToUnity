@@ -423,12 +423,15 @@ namespace RoBIM
             oneElement.ElementType = "Screw";
             oneElement.ElementName = elementName;
             //刪掉
-            oneElement.screwLocation = new ScrewLocation();
-            oneElement.screwLocation.ScrewPoint = startPoint;
-            oneElement.screwDirection = screwdirection;
-           //刪掉
+            //oneElement.screwLocation = new ScrewLocation();
+            //oneElement.screwLocation.ScrewPoint = startPoint;
+            //oneElement.screwDirection = screwdirection;
+            //刪掉
+
+            oneElement.productionReference = new ProductionReference();
+
             oneElement.screwLength_in_mm = screwlength_in_mm;
-            oneElement.productionReference.Position = startPoint;
+            oneElement.productionReference.Position = endPoint;
             oneElement.productionReference.Direction = screwdirection;
             oneElement.productionReference.ProductionMethod = ProductionMethod.Screw.ToString();
             return oneElement;
