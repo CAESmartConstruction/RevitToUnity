@@ -31,8 +31,10 @@ namespace RoBIM
             reference_collector = uidoc.Selection.PickObjects(ObjectType.Element);
 
             Elements elementsJson = new Elements();
-            elementsJson.ElementList = new List<OneElement>();
-
+            elementsJson.StructuralFramingList = new List<OneElement>();
+            elementsJson.InsulationList = new List<OneElement>();
+            elementsJson.ScrewList = new List<OneElement>();
+            List<OneElement> screwList=new List<OneElement>();
             foreach (Reference reference in reference_collector)
             {
                 Element targetElement = doc.GetElement(reference);
@@ -53,7 +55,7 @@ namespace RoBIM
                         if (targetElement.get_Parameter(BuiltInParameter.IS_VISIBLE_PARAM).AsInteger() == 1)
                         {
                             OneElement oneElement = UtilityJson.getJsonFromStructuralFraming(doc, targetElement);
-                            elementsJson.ElementList.Add(oneElement);
+                            elementsJson.StructuralFramingList.Add(oneElement);
                         }
                             
                     }
@@ -61,8 +63,8 @@ namespace RoBIM
                 }
                 else if (categoryId == (int)BuiltInCategory.OST_GenericModel)
                 {
-                    OneElement oneElement = UtilityJson.getJsonFromInsulationArray(doc,targetElement);
-                    elementsJson.ElementList.Add(oneElement);
+                    List<OneElement> oneElementList = UtilityJson.getJsonFromInsulationArray(doc,targetElement);
+                    elementsJson.InsulationList.AddRange(oneElementList);
                 }
             }
 
@@ -145,47 +147,28 @@ namespace RoBIM
             set;
         }
     }
-    public interface  OneElement{
-        
+    public interface OneElement {
+
+        ProductionReference productionReference { get; set; }
+        String ElementType { get; set; }
+
+    }
+
     
-    }
-
-    public class SteelComponent:OneElement
+    public enum ProductionMethod
     {
-        public String ElementType
-        {
-            get;
-            set;
-        }
-        public String ElementName
-        {
-            get;
-            set;
-        }
-        public StructuralLocation structuralLocation
-        {
-            get;
-            set;
-        }
-        public IList<XYZ> SectionOnStart
-        {
-            get;
-            set;
-        }
-        public double CrossSectionRotation
-        {
-            get;
-            set;
-        }
-        public  InstanceTransform instanceTransform
-        {
-            get;
-            set;
-        }
-
-
+        Gripper,
+        VacuumGripper,
+        Screw,
+        None,
+        
     }
-
+    public class ProductionReference
+    {
+        public XYZ Position { get; set; }
+        public XYZ Direction  { get; set; }
+        public String ProductionMethod { get; set; }
+    }
     public class ScrewComponent: OneElement
     {
         public String ElementType
@@ -203,7 +186,7 @@ namespace RoBIM
             get;
             set;
         }
-        public string screwDirection
+        public XYZ screwDirection
         {
             get;
             set;
@@ -213,115 +196,11 @@ namespace RoBIM
             get;
             set;
         }
+        public ProductionReference productionReference { get; set; }
     }
 
-    public class InsulationLocation
-    {
-        public XYZ StartPoint
-        {
-            get;
-            set;
-        }
-       
-    }
-    public class InsulationSize
-    {
-        public double Height
-        {
-            get;
-            set;
-        }
-        public double Width
-        {
-            get;
-            set;
-        }
-        public double Thick
-        {
-            get;
-            set;
-        }
-
-    }
-    public class InsulationNumbers
-    {
-        public int HNumber
-        {
-            get;
-            set;
-        }
-        public int VNumber
-        {
-            get;
-            set;
-        }
-      
-
-    }
-    public class InsulationRemaining
-    {
-        public double HRemaing
-        {
-            get;
-            set;
-        }
-        public double VRemaing
-        {
-            get;
-            set;
-        }
-
-
-    }
-
-    public class Insulation : OneElement
-    {
-        public String ElementType
-        {
-            get;
-            set;
-        }
-        public String ElementName
-        {
-            get;
-            set;
-        }
-        public InsulationLocation insulationLocation
-        {
-            get;
-            set;
-        }
-        public InsulationNumbers insulationNumbers
-        {
-            get;
-            set;
-        }
-        public InsulationSize insulationSize
-        {
-            get;
-            set;
-        }
-        public string Material
-        {
-            get;
-            set;
-        }
-        public InsulationRemaining insulationRemaining
-        {
-            get;
-            set;
-        }
-
-
-    }
-    public class Elements
-    {
-        public List<OneElement> ElementList
-        {
-            get;
-            set;
-        }
-    }
+    
+    
     
    
 
