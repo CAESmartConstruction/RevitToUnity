@@ -405,7 +405,7 @@ namespace RoBIM
             double endExtension = (targetElement.get_Parameter(BuiltInParameter.END_EXTENSION).AsDouble());
             //MessageBox.Show(startPoint.ToString());
             XYZ screwdirection = (screwCurve.Curve.GetEndPoint(0) - screwCurve.Curve.GetEndPoint(1)).Normalize();
-            MessageBox.Show("directin :" + (screwdirection.ToString()));
+            //MessageBox.Show("directin :" + (screwdirection.ToString()));
 
             string elementName = targetElement.Name.ToString();
             //MessageBox.Show("Name :" + elementName);
@@ -423,12 +423,15 @@ namespace RoBIM
             oneElement.ElementType = "Screw";
             oneElement.ElementName = elementName;
             //刪掉
-            oneElement.screwLocation = new ScrewLocation();
-            oneElement.screwLocation.ScrewPoint = startPoint;
-            oneElement.screwDirection = screwdirection;
-           //刪掉
+            //oneElement.screwLocation = new ScrewLocation();
+            //oneElement.screwLocation.ScrewPoint = startPoint;
+            //oneElement.screwDirection = screwdirection;
+            //刪掉
+
+            oneElement.productionReference = new ProductionReference();
+
             oneElement.screwLength_in_mm = screwlength_in_mm;
-            oneElement.productionReference.Position = startPoint;
+            oneElement.productionReference.Position = endPoint;
             oneElement.productionReference.Direction = screwdirection;
             oneElement.productionReference.ProductionMethod = ProductionMethod.Screw.ToString();
             return oneElement;
