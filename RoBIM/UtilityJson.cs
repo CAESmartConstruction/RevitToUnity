@@ -199,11 +199,11 @@ namespace RoBIM
 
             XYZ startPoint = screwCurve.Curve.GetEndPoint(0);
             XYZ endPoint = screwCurve.Curve.GetEndPoint(1);
-            MessageBox.Show("startpoint :" + (startPoint.ToString()));
-            MessageBox.Show("endpoint :" + (endPoint.ToString()));
+            //MessageBox.Show("startpoint :" + (startPoint.ToString()));
+            //MessageBox.Show("endpoint :" + (endPoint.ToString()));
 
             XYZ screwdirection = (screwCurve.Curve.GetEndPoint(0) - screwCurve.Curve.GetEndPoint(1)).Normalize();
-            MessageBox.Show("directin :" + (screwdirection.ToString()));
+            //MessageBox.Show("directin :" + (screwdirection.ToString()));
 
             string elementName = targetElement.Name.ToString();
             //MessageBox.Show("Name :" + elementName);
