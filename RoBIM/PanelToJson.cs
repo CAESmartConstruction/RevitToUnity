@@ -34,7 +34,7 @@ namespace RoBIM
             elementsJson.StructuralFramingList = new List<OneElement>();
             elementsJson.InsulationList = new List<OneElement>();
             elementsJson.ScrewList = new List<OneElement>();
-
+            List<OneElement> screwList=new List<OneElement>();
             foreach (Reference reference in reference_collector)
             {
                 Element targetElement = doc.GetElement(reference);
@@ -42,8 +42,9 @@ namespace RoBIM
                 if (categoryId == (int)BuiltInCategory.OST_StructuralFraming)
                 {
                     if(targetElement.Name == "#6_Screw")
-                    {
+                    {   
                         OneElement oneElement = UtilityJson.getJsonFromScrew(targetElement);
+                        
                         elementsJson.ScrewList.Add(oneElement);
                     }
                     else

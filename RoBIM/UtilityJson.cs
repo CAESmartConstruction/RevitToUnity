@@ -27,7 +27,7 @@ namespace RoBIM
             LocationPoint locationPoint = targetElement.Location as LocationPoint;
             Double RemainingTolerance = UnitUtils.Convert(0.03, UnitTypeId.Centimeters, UnitTypeId.Feet);
             ElementId pickedtypeid = targetElement.GetTypeId();
-            Element family = doc.GetElement(pickedtypeid);
+            ElementType family = doc.GetElement(pickedtypeid) as ElementType;
             int Hnumber = family.LookupParameter("Hnumber").AsInteger();
             int Vnumber = family.LookupParameter("Vnumber").AsInteger();
             double Height = family.LookupParameter("Height").AsDouble();
@@ -37,8 +37,8 @@ namespace RoBIM
             double thick = family.LookupParameter("thick").AsDouble();
             double VRemainHight=family.LookupParameter("VRemainLength").AsDouble();
             double HRemainWidth = family.LookupParameter("HRemainWidth").AsDouble();
-            string material = family.get_Parameter(BuiltInParameter.MATERIAL_NAME).AsString();
-
+            //string material = family.get_Parameter(BuiltInParameter.material).AsString();
+            string material = "";
             FamilyInstance familyInstance = targetElement as FamilyInstance;
             Transform transform = familyInstance.GetTransform();
 
@@ -195,7 +195,8 @@ namespace RoBIM
       
             FamilyInstance familyInstance = targetElement as FamilyInstance;
             
-            
+
+
             List<Solid> solids = UtilityJson.GetElementSolids(targetElement, geomOptions, false);
            
             
@@ -220,8 +221,18 @@ namespace RoBIM
 
             ElementId pickedtypeid = targetElement.GetTypeId();
             Element family = doc.GetElement(pickedtypeid);
-            double ProductMethodTransition = family.LookupParameter("ProductMethodTransition").AsDouble();
-            string ProductMethodDirection = family.LookupParameter("ProductMethodDirection").AsString();
+            double ProductMethodTransition;
+            string ProductMethodDirection;
+            if (family.LookupParameter("ProductMethodTransition") != null)
+                ProductMethodTransition = family.LookupParameter("ProductMethodTransition").AsDouble();
+            else
+                ProductMethodTransition = 0;
+
+            if (family.LookupParameter("ProductMethodDirection") != null)
+                ProductMethodDirection = family.LookupParameter("ProductMethodDirection").AsString();
+            else
+                ProductMethodDirection = "";
+           
             ElementType elementType = targetElement as ElementType;
             string SteelComponentFamilyName = family.Name.ToString();
             
@@ -365,7 +376,7 @@ namespace RoBIM
             else if (productMethodDirection == EnumProductMethodDirection.pX.ToString())
                 return new XYZ(1, 0, 0);
             else
-                return null;
+                return new XYZ(0, 0, 0);
 
 
 
@@ -392,7 +403,7 @@ namespace RoBIM
             //MessageBox.Show("endpoint :" + (endPoint.ToString()));
             double startExtension = (targetElement.get_Parameter(BuiltInParameter.START_EXTENSION).AsDouble());
             double endExtension = (targetElement.get_Parameter(BuiltInParameter.END_EXTENSION).AsDouble());
-            MessageBox.Show(startPoint.ToString());
+            //MessageBox.Show(startPoint.ToString());
             XYZ screwdirection = (screwCurve.Curve.GetEndPoint(0) - screwCurve.Curve.GetEndPoint(1)).Normalize();
             //MessageBox.Show("directin :" + (screwdirection.ToString()));
 
@@ -415,7 +426,7 @@ namespace RoBIM
             oneElement.screwLocation = new ScrewLocation();
             oneElement.screwLocation.ScrewPoint = startPoint;
             oneElement.screwDirection = screwdirection;
-            //刪掉
+           //刪掉
             oneElement.screwLength_in_mm = screwlength_in_mm;
             oneElement.productionReference.Position = startPoint;
             oneElement.productionReference.Direction = screwdirection;
