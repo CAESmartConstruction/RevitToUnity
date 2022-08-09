@@ -18,39 +18,154 @@ namespace RoBIM
 {
     class UtilityJson
     {   
-        static public OneElement getJsonFromInsulationArray(Document doc,Element targetElement)
+        static public List<OneElement> getJsonFromInsulationArray(Document doc,Element targetElement)
         {
+            List<OneElement> oneElementList = new List<OneElement>();
             Options geomOptions = new Options();
             geomOptions.ComputeReferences = true;
             List<Solid> solids = UtilityJson.GetElementSolids(targetElement, geomOptions, false);
             LocationPoint locationPoint = targetElement.Location as LocationPoint;
-           
+            Double RemainingTolerance = UnitUtils.Convert(0.03, UnitTypeId.Centimeters, UnitTypeId.Feet);
             ElementId pickedtypeid = targetElement.GetTypeId();
-            Element family = doc.GetElement(pickedtypeid);
+            ElementType family = doc.GetElement(pickedtypeid) as ElementType;
             int Hnumber = family.LookupParameter("Hnumber").AsInteger();
             int Vnumber = family.LookupParameter("Vnumber").AsInteger();
-            string elementName = targetElement.Name.ToString();
-            Elements elementsJson = new Elements();
+            double Height = family.LookupParameter("Height").AsDouble();
+            double Width = family.LookupParameter("Width").AsDouble();
+            double InsulationHeight = family.LookupParameter("InsulationHeight").AsDouble();
+            double InsulationWidth = family.LookupParameter("InsulationWidth").AsDouble();
+            double thick = family.LookupParameter("thick").AsDouble();
+            double VRemainHight=family.LookupParameter("VRemainLength").AsDouble();
+            double HRemainWidth = family.LookupParameter("HRemainWidth").AsDouble();
+            //string material = family.get_Parameter(BuiltInParameter.material).AsString();
+            string material = "";
+            FamilyInstance familyInstance = targetElement as FamilyInstance;
+            Transform transform = familyInstance.GetTransform();
 
-            Insulation oneElement = new Insulation();
-            oneElement.ElementType = "Generic Model";
+            Transform transform_Inverse = transform.Inverse;
+            XYZ local_Point = transform_Inverse.OfPoint(locationPoint.Point);
+            XYZ local_LeftLowPointOnFace = local_Point.Subtract(XYZ.BasisX.Multiply(Width / 2)).Add(XYZ.BasisY.Multiply(thick / 2));
+            XYZ local_LocationPoint = local_LeftLowPointOnFace.Add(XYZ.BasisX.Multiply(InsulationWidth / 2)).Add(XYZ.BasisZ.Multiply(InsulationHeight / 2));
+            for (int h= 0; h< Hnumber; h++){
+                for (int v = 0;v < Vnumber; v++)
+                {
+                    XYZ xTransition = XYZ.BasisX.Multiply(InsulationWidth).Multiply(h);
+                    XYZ zTransition = XYZ.BasisZ.Multiply(InsulationHeight).Multiply(v);
+                    XYZ elementlocal_LocationPoint= local_LocationPoint.Add(xTransition).Add(zTransition);
+                    if (elementlocal_LocationPoint == null) elementlocal_LocationPoint = local_LocationPoint;
+                    string elementName = targetElement.Name.ToString();
+                    Elements elementsJson = new Elements();
+                    
+                    Insulation oneElement = new Insulation();
+                    oneElement.ElementType = "Generic Model";
 
-            oneElement.ElementName = elementName;
+                    oneElement.ElementName = elementName;
+                    oneElement.Material = material;
+                    oneElement.insulationLocation = new InsulationLocation();
+                    oneElement.insulationLocation.LocationPoint = transform.OfPoint(elementlocal_LocationPoint);
 
-            oneElement.insulationLocation = new InsulationLocation();
-            oneElement.insulationLocation.StartPoint = locationPoint.Point;
-            oneElement.insulationNumbers = new InsulationNumbers();
-            oneElement.insulationNumbers.HNumber= Hnumber;
-            oneElement.insulationNumbers.VNumber = Vnumber;
-            oneElement.insulationSize = new InsulationSize();
-            oneElement.insulationSize.Height= family.LookupParameter("InsulationHeight").AsDouble();
-            oneElement.insulationSize.Width = family.LookupParameter("InsulationWidth").AsDouble();
-            oneElement.insulationSize.Thick = family.LookupParameter("thick").AsDouble();
-            oneElement.insulationRemaining = new InsulationRemaining();
-            oneElement.insulationRemaining.VRemaing = family.LookupParameter("VRemainLength").AsDouble();
-            oneElement.insulationRemaining.HRemaing = family.LookupParameter("HRemainWidth").AsDouble();
+                    oneElement.insulationSize = new InsulationSize();
+                    oneElement.insulationSize.Height = family.LookupParameter("InsulationHeight").AsDouble();
+                    oneElement.insulationSize.Width = family.LookupParameter("InsulationWidth").AsDouble();
+                    oneElement.insulationSize.Thick = family.LookupParameter("thick").AsDouble();
 
-            return oneElement;
+                    oneElement.productionReference=new ProductionReference();
+                    oneElement.productionReference.Position = elementlocal_LocationPoint;
+                    oneElement.productionReference.Direction = XYZ.BasisY;
+                    oneElement.productionReference.ProductionMethod = ProductionMethod.VacuumGripper.ToString();
+                    oneElementList.Add(oneElement);
+                }
+                
+            }
+            if (VRemainHight > RemainingTolerance)
+            {
+                for (int h = 0; h < Hnumber; h++)
+                {
+                    XYZ xTransition = XYZ.BasisX.Multiply(InsulationWidth ).Multiply(h);
+                    XYZ zTransition = XYZ.BasisZ.Multiply(InsulationHeight ).Multiply(Vnumber-1).Add(XYZ.BasisX.Multiply(InsulationHeight / 2 + VRemainHight / 2));
+                    XYZ elementlocal_LocationPoint = local_LocationPoint.Add(xTransition).Add(zTransition);
+                    string elementName = targetElement.Name.ToString();
+                    Elements elementsJson = new Elements();
+
+                    Insulation oneElement = new Insulation();
+                    oneElement.ElementType = "Generic Model";
+
+                    oneElement.ElementName = elementName;
+                    oneElement.Material = material;
+                    oneElement.insulationLocation = new InsulationLocation();
+                    oneElement.insulationLocation.LocationPoint = transform.OfPoint(elementlocal_LocationPoint);
+                    
+                    oneElement.insulationSize = new InsulationSize();
+                    oneElement.insulationSize.Height = VRemainHight;
+                    oneElement.insulationSize.Width = family.LookupParameter("InsulationWidth").AsDouble();
+                    oneElement.insulationSize.Thick = family.LookupParameter("thick").AsDouble();
+                    oneElement.productionReference = new ProductionReference();
+                    oneElement.productionReference.Position = elementlocal_LocationPoint;
+                    oneElement.productionReference.Direction = XYZ.BasisY;
+                    oneElement.productionReference.ProductionMethod = ProductionMethod.VacuumGripper.ToString();
+                    oneElementList.Add(oneElement);
+                }
+                    
+            }
+            if (HRemainWidth > RemainingTolerance)
+            {
+                for (int v = 0; v < Vnumber; v++)
+                {
+                    XYZ xTransition = XYZ.BasisZ.Multiply(InsulationWidth).Multiply(Hnumber - 1).Add(XYZ.BasisX.Multiply(InsulationWidth / 2 + HRemainWidth / 2));
+                    XYZ zTransition = XYZ.BasisX.Multiply(InsulationHeight).Multiply(v);
+                    XYZ elementlocal_LocationPoint = local_LocationPoint.Add(xTransition).Add(zTransition);
+                    string elementName = targetElement.Name.ToString();
+                    Elements elementsJson = new Elements();
+
+                    Insulation oneElement = new Insulation();
+                    oneElement.ElementType = "Generic Model";
+
+                    oneElement.ElementName = elementName;
+                    oneElement.Material = material;
+                    oneElement.insulationLocation = new InsulationLocation();
+                    oneElement.insulationLocation.LocationPoint = transform.OfPoint(elementlocal_LocationPoint);
+
+                    oneElement.insulationSize = new InsulationSize();
+                    oneElement.insulationSize.Height = family.LookupParameter("InsulationHeight").AsDouble();
+                    oneElement.insulationSize.Width = HRemainWidth;
+                    oneElement.insulationSize.Thick = family.LookupParameter("thick").AsDouble();
+                    oneElement.productionReference = new ProductionReference();
+                    oneElement.productionReference.Position = elementlocal_LocationPoint;
+                    oneElement.productionReference.Direction = XYZ.BasisY;
+                    oneElement.productionReference.ProductionMethod = ProductionMethod.VacuumGripper.ToString();
+                    oneElementList.Add(oneElement);
+                }
+            }
+            if (VRemainHight > RemainingTolerance && HRemainWidth > RemainingTolerance)
+            {
+                XYZ xTransition = XYZ.BasisX.Multiply(InsulationWidth).Multiply(Hnumber - 1).Add(XYZ.BasisX.Multiply(InsulationWidth / 2 + HRemainWidth / 2));
+                XYZ zTransition = XYZ.BasisZ.Multiply(InsulationHeight).Multiply(Vnumber - 1).Add(XYZ.BasisX.Multiply(InsulationHeight / 2 + VRemainHight / 2));
+                XYZ elementlocal_LocationPoint = local_LocationPoint.Add(xTransition).Add(zTransition);
+                string elementName = targetElement.Name.ToString();
+                Elements elementsJson = new Elements();
+
+                Insulation oneElement = new Insulation();
+                oneElement.ElementType = "Generic Model";
+
+                oneElement.ElementName = elementName;
+                oneElement.Material = material;
+                oneElement.insulationLocation = new InsulationLocation();
+                oneElement.insulationLocation.LocationPoint = transform.OfPoint(elementlocal_LocationPoint);
+
+                oneElement.insulationSize = new InsulationSize();
+                oneElement.insulationSize.Height = VRemainHight;
+                oneElement.insulationSize.Width = family.LookupParameter("InsulationWidth").AsDouble();
+                oneElement.insulationSize.Thick = family.LookupParameter("thick").AsDouble();
+                oneElement.productionReference = new ProductionReference();
+                oneElement.productionReference.Position = elementlocal_LocationPoint;
+                oneElement.productionReference.Direction = XYZ.BasisY;
+                oneElement.productionReference.ProductionMethod = ProductionMethod.VacuumGripper.ToString();
+                oneElementList.Add(oneElement);
+            }
+
+
+
+            return oneElementList;
         }
        
         static public OneElement getJsonFromStructuralFraming(Document doc,Element targetElement)
@@ -80,7 +195,8 @@ namespace RoBIM
       
             FamilyInstance familyInstance = targetElement as FamilyInstance;
             
-            
+
+
             List<Solid> solids = UtilityJson.GetElementSolids(targetElement, geomOptions, false);
            
             
@@ -102,17 +218,37 @@ namespace RoBIM
             double Length = (targetElement.get_Parameter(BuiltInParameter.STRUCTURAL_FRAME_CUT_LENGTH).AsDouble());
             double startExtension= (targetElement.get_Parameter(BuiltInParameter.START_EXTENSION).AsDouble());
             double endExtension = (targetElement.get_Parameter(BuiltInParameter.END_EXTENSION).AsDouble());
-            string elementName = targetElement.Name.ToString();
-            XYZ originPoint = (locationcurve.Curve.GetEndPoint(0) + locationcurve.Curve.GetEndPoint(1))/2;
-            //MessageBox.Show("Name :" + elementName);
-               //1561
-            XYZ startPoint = locationcurve.Curve.GetEndPoint(0).Subtract(direction.Multiply(startExtension));
+
+            ElementId pickedtypeid = targetElement.GetTypeId();
+            Element family = doc.GetElement(pickedtypeid);
+            double ProductMethodTransition;
+            string ProductMethodDirection;
+            if (family.LookupParameter("ProductMethodTransition") != null)
+                ProductMethodTransition = family.LookupParameter("ProductMethodTransition").AsDouble();
+            else
+                ProductMethodTransition = 0;
+
+            if (family.LookupParameter("ProductMethodDirection") != null)
+                ProductMethodDirection = family.LookupParameter("ProductMethodDirection").AsString();
+            else
+                ProductMethodDirection = "";
+           
+            ElementType elementType = targetElement as ElementType;
+            string SteelComponentFamilyName = family.Name.ToString();
+            
+             //MessageBox.Show("Name :" + elementName);
+             //1561
+             XYZ startPoint = locationcurve.Curve.GetEndPoint(0).Subtract(direction.Multiply(startExtension));
             //MessageBox.Show("startExtension :" + startExtension.ToString());
             XYZ endPoint = startPoint.Add(direction.Multiply(Length));
             //MessageBox.Show("length :" + (Length.ToString()));
-
+            
             double crossSectionRotation = (targetElement.get_Parameter(BuiltInParameter.STRUCTURAL_BEND_DIR_ANGLE).AsDouble());
             //MessageBox.Show("crossSectionRotation :" + crossSectionRotation.ToString());
+            Line originLine = Line.CreateUnbound(transform.Origin, direction);
+            startPoint = originLine.Project(startPoint).XYZPoint;
+            endPoint = originLine.Project(endPoint).XYZPoint;
+            XYZ originPoint = (startPoint + endPoint) / 2;
             foreach (Solid solid in solids)
             {
 
@@ -167,7 +303,7 @@ namespace RoBIM
 
             SteelComponent oneElement = new SteelComponent();
             oneElement.ElementType = "Structural Framing";
-            oneElement.ElementName = elementName;
+            oneElement.ElementName = SteelComponentFamilyName;
             oneElement.SectionOnStart = section;
             oneElement.structuralLocation = new StructuralLocation();
             oneElement.structuralLocation.StartPoint = startPoint;
@@ -178,9 +314,73 @@ namespace RoBIM
             oneElement.instanceTransform.BasisY = transform.BasisY;
             oneElement.instanceTransform.BasisZ = transform.BasisZ;
             oneElement.instanceTransform.Origin = transform.Origin;
-
-
+            oneElement.productionReference=new ProductionReference();
+            
+            oneElement.productionReference.Position = originPoint.Add(enumProductMethodDirectionToXYZ(ProductMethodDirection).Multiply(ProductMethodTransition));
+            
+            oneElement.productionReference.Direction = enumProductMethodDirectionToXYZ(ProductMethodDirection);
+            oneElement.productionReference.ProductionMethod = getProductionMethod_FromSteelComponentFamilyName(SteelComponentFamilyName).ToString();
             return oneElement;
+
+        }
+        public enum EnumProductMethodDirection
+        {
+            nZ,
+            pZ,
+            nY,
+            pY,
+            nX,
+            pX,
+        }
+        public enum EnumSteelComponentFamilyName
+        {
+            endcap,
+            PartB,
+            PartD_C_Channel,
+            
+        }
+        static public ProductionMethod getProductionMethod_FromSteelComponentFamilyName(string SteelComponentFamilyName)
+        {
+
+
+            if (SteelComponentFamilyName == EnumSteelComponentFamilyName.endcap.ToString())
+                return ProductionMethod.VacuumGripper;
+            else if (SteelComponentFamilyName == EnumSteelComponentFamilyName.PartB.ToString())
+                return ProductionMethod.None;
+            else if (SteelComponentFamilyName == EnumSteelComponentFamilyName.PartD_C_Channel.ToString())
+                return ProductionMethod.Gripper;
+            else if (SteelComponentFamilyName == "typical steel stud")
+                return ProductionMethod.Gripper;
+            else
+                return ProductionMethod.None;
+
+
+
+
+
+        }
+        static public XYZ enumProductMethodDirectionToXYZ(string productMethodDirection)
+        {
+
+
+            if (productMethodDirection == EnumProductMethodDirection.nZ.ToString())
+                return new XYZ(0, 0, -1);
+            else if (productMethodDirection == EnumProductMethodDirection.pZ.ToString())
+                return new XYZ(0, 0, 1);
+            else if (productMethodDirection == EnumProductMethodDirection.nY.ToString())
+                return new XYZ(0, -1, 0);
+            else if (productMethodDirection == EnumProductMethodDirection.pY.ToString())
+                return new XYZ(0, 1, 0);
+            else if (productMethodDirection == EnumProductMethodDirection.nX.ToString())
+                return new XYZ(-1, 0, 0);
+            else if (productMethodDirection == EnumProductMethodDirection.pX.ToString())
+                return new XYZ(1, 0, 0);
+            else
+                return new XYZ(0, 0, 0);
+
+
+
+
 
         }
 
@@ -201,7 +401,9 @@ namespace RoBIM
             XYZ endPoint = screwCurve.Curve.GetEndPoint(1);
             //MessageBox.Show("startpoint :" + (startPoint.ToString()));
             //MessageBox.Show("endpoint :" + (endPoint.ToString()));
-
+            double startExtension = (targetElement.get_Parameter(BuiltInParameter.START_EXTENSION).AsDouble());
+            double endExtension = (targetElement.get_Parameter(BuiltInParameter.END_EXTENSION).AsDouble());
+            //MessageBox.Show(startPoint.ToString());
             XYZ screwdirection = (screwCurve.Curve.GetEndPoint(0) - screwCurve.Curve.GetEndPoint(1)).Normalize();
             //MessageBox.Show("directin :" + (screwdirection.ToString()));
 
@@ -220,11 +422,15 @@ namespace RoBIM
             ScrewComponent oneElement = new ScrewComponent();
             oneElement.ElementType = "Screw";
             oneElement.ElementName = elementName;
+            //刪掉
             oneElement.screwLocation = new ScrewLocation();
-            oneElement.screwLocation.ScrewPoint = endPoint;
-            oneElement.screwDirection = screwdirection.ToString();
+            oneElement.screwLocation.ScrewPoint = startPoint;
+            oneElement.screwDirection = screwdirection;
+           //刪掉
             oneElement.screwLength_in_mm = screwlength_in_mm;
-
+            oneElement.productionReference.Position = startPoint;
+            oneElement.productionReference.Direction = screwdirection;
+            oneElement.productionReference.ProductionMethod = ProductionMethod.Screw.ToString();
             return oneElement;
         }
         static public  XYZ useConstantTransformAndOrigin(XYZ point, Transform transform ,XYZ origin)
