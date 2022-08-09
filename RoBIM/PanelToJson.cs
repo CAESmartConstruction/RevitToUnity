@@ -42,10 +42,13 @@ namespace RoBIM
                 if (categoryId == (int)BuiltInCategory.OST_StructuralFraming)
                 {
                     if(targetElement.Name == "#6_Screw")
-                    {   
-                        OneElement oneElement = UtilityJson.getJsonFromScrew(targetElement);
+                    {
+                        if (targetElement.get_Parameter(BuiltInParameter.IS_VISIBLE_PARAM).AsInteger() == 1)
+                        {
+                            OneElement oneElement = UtilityJson.getJsonFromScrew(targetElement);
+                            elementsJson.ElementList.Add(oneElement);
+                        }
                         
-                        elementsJson.ScrewList.Add(oneElement);
                     }
                     else
                     {
@@ -74,12 +77,12 @@ namespace RoBIM
                 directory = Directory.GetParent(directory).ToString();
             }
             //directory 相對路徑
-            // String directory = String.Format(@"C:\Users\nick0\RoBIM-1\Result_File\panel_{0}.txt", DateTime.Now.ToLongDateString());
+            directory = String.Format(@"C:\Users\nick0\RoBIM-1\Result_File\panel_{0}.txt", DateTime.Now.ToLongDateString());
             String TimeStamp = DateTime.Now.ToLongDateString() + DateTime.Now.ToLongTimeString().Replace(":", "_");
             String filename = String.Format(@"panel_{0}.txt", TimeStamp);
             
-            directory = String.Format(@"C:\Users\ian89\source\repos\RoBIMtoJson");
-            directory = @directory + @"\Result_File\"+ filename;
+            //directory = String.Format(@"C:\Users\ian89\source\repos\RoBIMtoJson");
+            //directory = @directory + @"\Result_File\"+ filename;
 
        
             

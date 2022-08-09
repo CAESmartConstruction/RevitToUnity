@@ -405,7 +405,7 @@ namespace RoBIM
             double endExtension = (targetElement.get_Parameter(BuiltInParameter.END_EXTENSION).AsDouble());
             //MessageBox.Show(startPoint.ToString());
             XYZ screwdirection = (screwCurve.Curve.GetEndPoint(0) - screwCurve.Curve.GetEndPoint(1)).Normalize();
-            //MessageBox.Show("directin :" + (screwdirection.ToString()));
+            MessageBox.Show("directin :" + (screwdirection.ToString()));
 
             string elementName = targetElement.Name.ToString();
             //MessageBox.Show("Name :" + elementName);
