@@ -76,7 +76,7 @@ namespace RoBIM
             String TimeStamp = DateTime.Now.ToLongDateString() + DateTime.Now.ToLongTimeString().Replace(":", "_");
             String filename = String.Format(@"panel_{0}.txt", TimeStamp);
             
-            directory = String.Format(@"C:\Users\ian89\source\repos\RoBIMtoJson");
+            directory = String.Format(@"C:\Users\ASUS\source\repos\RevitToUnity");
             directory = @directory + @"\Result_File\"+ filename;
 
        
