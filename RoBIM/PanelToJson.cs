@@ -149,7 +149,9 @@ namespace RoBIM
 
     }
 
-    
+    /// <summary>
+    /// 
+    /// </summary>
     public enum ProductionMethod
     {
         Gripper,
