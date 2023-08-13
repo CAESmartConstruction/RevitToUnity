@@ -159,9 +159,18 @@ namespace RoBIM
         
     }
     public class ProductionReference
-    {
+    {   
+        /// <summary>
+        /// 夾的位置
+        /// </summary>
         public XYZ Position { get; set; }
+        /// <summary>
+        /// 夾的方向
+        /// </summary>
         public XYZ Direction  { get; set; }
+        /// <summary>
+        /// 用什麼工具夾
+        /// </summary>
         public String ProductionMethod { get; set; }
     }
     public class ScrewComponent: OneElement
