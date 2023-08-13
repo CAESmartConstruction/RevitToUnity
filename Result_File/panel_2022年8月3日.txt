@@ -1,0 +1,82 @@
+{
+  "ElementList": [
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.063639322916685059,
+          "Y": 0.29785156249905687,
+          "X": 14.937499999999957
+        }
+      },
+      "screwDirection": "(0.000000000, -1.000000000, 0.000000000)",
+      "screwLength_in_mm": 25.4
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 0.063639322916659025,
+          "Y": 0.297851562499057,
+          "X": 4.0677083333332966
+        }
+      },
+      "screwDirection": "(0.000000000, -1.000000000, 0.000000000)",
+      "screwLength_in_mm": 25.4
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 2.5011393229163561,
+          "Y": 0.29785156249906,
+          "X": 0.062499999999962697
+        }
+      },
+      "screwDirection": "(0.000000000, -1.000000000, 0.000000000)",
+      "screwLength_in_mm": 25.4
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 2.5011393229163557,
+          "Y": 0.29785156249906009,
+          "X": 8.0677083333332966
+        }
+      },
+      "screwDirection": "(0.000000000, -1.000000000, 0.000000000)",
+      "screwLength_in_mm": 25.4
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 9.9318033854161172,
+          "Y": 0.29785156249905964,
+          "X": 14.937499999999943
+        }
+      },
+      "screwDirection": "(0.000000000, -1.000000000, 0.000000000)",
+      "screwLength_in_mm": 25.4
+    },
+    {
+      "ElementType": "Screw",
+      "ElementName": "#6_Screw",
+      "screwLocation": {
+        "ScrewPoint": {
+          "Z": 9.9318033854161,
+          "Y": 0.29785156249906009,
+          "X": 8.0677083333332487
+        }
+      },
+      "screwDirection": "(0.000000000, -1.000000000, 0.000000000)",
+      "screwLength_in_mm": 25.4
+    }
+  ]
+}

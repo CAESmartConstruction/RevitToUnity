@@ -249,6 +249,7 @@ namespace RoBIM
             startPoint = originLine.Project(startPoint).XYZPoint;
             endPoint = originLine.Project(endPoint).XYZPoint;
             XYZ originPoint = (startPoint + endPoint) / 2;
+            XYZ localOriginPoint= transform_Inverse.OfPoint(originPoint);
             foreach (Solid solid in solids)
             {
 
@@ -315,8 +316,8 @@ namespace RoBIM
             oneElement.instanceTransform.BasisZ = transform.BasisZ;
             oneElement.instanceTransform.Origin = transform.Origin;
             oneElement.productionReference=new ProductionReference();
-            
-            oneElement.productionReference.Position = originPoint.Add(enumProductMethodDirectionToXYZ(ProductMethodDirection).Multiply(ProductMethodTransition));
+            //MessageBox.Show(ProductMethodTransition.ToString());
+            oneElement.productionReference.Position = transform.Origin.Add(enumProductMethodDirectionToXYZ(ProductMethodDirection).Multiply(ProductMethodTransition));
             
             oneElement.productionReference.Direction = enumProductMethodDirectionToXYZ(ProductMethodDirection);
             oneElement.productionReference.ProductionMethod = getProductionMethod_FromSteelComponentFamilyName(SteelComponentFamilyName).ToString();
@@ -405,7 +406,7 @@ namespace RoBIM
             double endExtension = (targetElement.get_Parameter(BuiltInParameter.END_EXTENSION).AsDouble());
             //MessageBox.Show(startPoint.ToString());
             XYZ screwdirection = (screwCurve.Curve.GetEndPoint(0) - screwCurve.Curve.GetEndPoint(1)).Normalize();
-            MessageBox.Show("directin :" + (screwdirection.ToString()));
+            //MessageBox.Show("directin :" + (screwdirection.ToString()));
 
             string elementName = targetElement.Name.ToString();
             //MessageBox.Show("Name :" + elementName);
@@ -423,12 +424,15 @@ namespace RoBIM
             oneElement.ElementType = "Screw";
             oneElement.ElementName = elementName;
             //刪掉
-            oneElement.screwLocation = new ScrewLocation();
-            oneElement.screwLocation.ScrewPoint = startPoint;
-            oneElement.screwDirection = screwdirection;
-           //刪掉
+            //oneElement.screwLocation = new ScrewLocation();
+            //oneElement.screwLocation.ScrewPoint = startPoint;
+            //oneElement.screwDirection = screwdirection;
+            //刪掉
+
+            oneElement.productionReference = new ProductionReference();
+
             oneElement.screwLength_in_mm = screwlength_in_mm;
-            oneElement.productionReference.Position = startPoint;
+            oneElement.productionReference.Position = endPoint;
             oneElement.productionReference.Direction = screwdirection;
             oneElement.productionReference.ProductionMethod = ProductionMethod.Screw.ToString();
             return oneElement;
