@@ -317,7 +317,7 @@ namespace RoBIM
             oneElement.instanceTransform.Origin = transform.Origin;
             oneElement.productionReference=new ProductionReference();
             //MessageBox.Show(ProductMethodTransition.ToString());
-            oneElement.productionReference.Position = transform.Origin.Add(enumProductMethodDirectionToXYZ(ProductMethodDirection).Multiply(ProductMethodTransition));
+            oneElement.productionReference.Position = localOriginPoint.Add(enumProductMethodDirectionToXYZ(ProductMethodDirection).Multiply(ProductMethodTransition));
             
             oneElement.productionReference.Direction = enumProductMethodDirectionToXYZ(ProductMethodDirection);
             oneElement.productionReference.ProductionMethod = getProductionMethod_FromSteelComponentFamilyName(SteelComponentFamilyName).ToString();

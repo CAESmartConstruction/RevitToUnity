@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RoBIM.InsulationLocation" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Insulation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoBIM.InsulationSize" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Insulation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoBIM.InsulationNumbers" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACCAAAAAAAAAAA=</HashCode>
+      <FileName>Insulation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoBIM.InsulationRemaining" Collapsed="true">
+    <Position X="9.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Insulation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoBIM.Insulation" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="2.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AEAABgAAAAAAAAAAIAAAAACAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Insulation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RoBIM.SteelComponent" Collapsed="true">
+    <Position X="13.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABgAEAAAACAAAAAAAAAIAAAAAAAAAQAIAAAAAAAA=</HashCode>
+      <FileName>SteelComponent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RoBIM.Elements" Collapsed="true">
+    <Position X="16.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAIAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Elements.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft JhengHei UI" Size="9" />
+</ClassDiagram>
