@@ -69,7 +69,7 @@ namespace RoBIM
             }
 
             trans.Commit();
-            string directory ;//會是模型的路徑
+            string directory;//輸出入境
            
            
             //directory = String.Format(@"C:\Users\nick0\RoBIM-1\Result_File\panel_{0}.txt", DateTime.Now.ToLongDateString());
