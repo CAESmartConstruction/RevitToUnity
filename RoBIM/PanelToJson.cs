@@ -48,7 +48,6 @@ namespace RoBIM
                             OneElement oneElement = UtilityJson.getJsonFromScrew(targetElement);
                             elementsJson.ScrewList.Add(oneElement);
                         }
-                        
                     }
                     else
                     {
