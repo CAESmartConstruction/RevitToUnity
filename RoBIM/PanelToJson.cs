@@ -76,7 +76,7 @@ namespace RoBIM
             String TimeStamp = DateTime.Now.ToLongDateString() + DateTime.Now.ToLongTimeString().Replace(":", "_");
             String filename = String.Format(@"panel_{0}.txt", TimeStamp);
             
-            directory = String.Format(@"C:\Users\ian89\source\repos\RoBIMtoJson");
+            directory = String.Format(@"C:\Users\ASUS\source\repos\RevitToUnity");
             directory = @directory + @"\Result_File\"+ filename;
 
        
@@ -159,9 +159,18 @@ namespace RoBIM
         
     }
     public class ProductionReference
-    {
+    {   
+        /// <summary>
+        /// 夾的位置
+        /// </summary>
         public XYZ Position { get; set; }
+        /// <summary>
+        /// 夾的方向
+        /// </summary>
         public XYZ Direction  { get; set; }
+        /// <summary>
+        /// 用什麼工具夾
+        /// </summary>
         public String ProductionMethod { get; set; }
     }
     public class ScrewComponent: OneElement
